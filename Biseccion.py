@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from inputHandler import setUpInput
 
 plt.style.use('seaborn')
 #%matplotlib inline
@@ -46,14 +47,17 @@ def new_inter(f,a,b,n=5):
 
 # Metodo De Biseccion
 
-def metodo_biseccion(f,a,b,tol=10**-4,n=50):
-    
+def metodo_biseccion(t,a,b,tol=10**-4,n=50):
+    strResult = ""
+    t = setUpInput(t)
+    f = lambda x: eval(t)
     ite_teoricas = iteraciones(a,b)
     a_graf = a
     b_graf = b
     if f(a)*f(b) >= 0:  # el intevalo escogido no sirve
-        if new_inter(f,a,b) != None:
-          a,b = new_inter(f,a,b)
+        newInter = new_inter(f,a,b)
+        if newInter != None:
+          a,b = newInter
         else:
           print('El intervalo no funciona, f(a)={:.2f} y f(b)={:.2f}'.format(f(a),f(b)))
           return None
@@ -62,10 +66,12 @@ def metodo_biseccion(f,a,b,tol=10**-4,n=50):
     i = 1
     while i <= n and e_abs > tol:
         c = (a + b)/2  # punto medio
-        print('ite {:<2}: a_{:<2}={:.7f} , b_{:<2}={:.7f}, c_{:<2}={:.7f}'.format(i,i-1,a,i-1,b,i,c),'error:{}'.format(e_abs))
+        #print('ite {:<2}: a_{:<2}={:.7f} , b_{:<2}={:.7f}, c_{:<2}={:.7f}'.format(i,i-1,a,i-1,b,i,c),'error:{}'.format(e_abs))
+        strResult += 'n{:<2}: a{:<2}={:.7f} , b{:<2}={:.7f}, c{:<2}={:.7f}'.format(i,i-1,a,i-1,b,i,c) + ' error:{}'.format(e_abs) + "\n"
         if f(c)==0:  # solución exacta encontrada
-            print('Solución encontrada x={:.7f}'. format(c))
-            return c
+            #print('Solución encontrada x={:.7f}'. format(c))
+            strResult += 'Solución encontrada x={:.7f}'. format(c)
+            return strResult, f, a_graf, b_graf, c
         if f(a)*f(c)<0:  # escoger intervalo izquierdo
             b = c
             c_t = a
@@ -74,21 +80,26 @@ def metodo_biseccion(f,a,b,tol=10**-4,n=50):
             c_t = b
         e_abs = abs(c_t - c)  # error absoluto
         if e_abs < tol:  # criterio de parada
-            print('Solución encontrada x= {:.7f},Valor de f(c)= {},iteraciones: {}'. format(c,f(c),i),'Iteraciones Teoricas: {}'.format(ite_teoricas))
-            graficar(f,a_graf,b_graf,c)
-            return c
-        i += 1
-    print ('Solución no encontrada, iteraciones agotadas: {}'.format(i-1))
-    return None
+            #print('Solución encontrada x= {:.7f},Valor de f(c)= {},iteraciones: {}'. format(c,f(c),i),'Iteraciones Teoricas: {}'.format(ite_teoricas))
+            strResult += 'Solución encontrada x= {:.7f}\nValor de f(c)= {}\niteraciones: {}'. format(c,f(c),i) + '\nIteraciones Teoricas: {}'.format(ite_teoricas)
+            #graficar(f,a_graf,b_graf,c)
+            return strResult, f, a_graf, b_graf, c
+        i += 1    
+    #print ('Solución no encontrada, iteraciones agotadas: {}'.format(i-1))
+    strResult += 'Solución no encontrada, iteraciones agotadas: {}'.format(i-1)
+    return strResult, f, a_graf, b_graf, None
 
-#Funciones
-def f1(x):
-    return x + np.log(x)
 
-def f2(x):
-    return np.sin(x)
+f = "sin(x)"
 
-#graficar(f2,3,7)
+#Llamadas al metodo
+#strResult, f, a_graf, b_graf,c = metodo_biseccion(f,3,7)
+#print(strResult)
+#graficar(f, a_graf, b_graf,c)
 
-# Llamadas al metodo
-metodo_biseccion(f2,3,7)
+
+
+
+
+#print(eval(setUpInput(f)))
+#print(np.log(2))
