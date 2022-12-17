@@ -21,8 +21,14 @@ class View:
         lblF = tk.Label(master = frmOptions, text = "f(x) = ")
         lblF.grid(row = 0, column = 0, sticky = "news", padx = 5, pady = 5)
         self.entF = entF = tk.Entry(master = frmOptions)
-        entF.grid(row = 0, column = 1, columnspan = 4, sticky = "news", padx = 5, pady = 5)
+        entF.grid(row = 0, column = 1, columnspan = 1, sticky = "news", padx = 5, pady = 5)
         entF.insert(0, "sin(x)")
+
+        lblT = tk.Label(master = frmOptions, text = "Tolerancia = ")
+        lblT.grid(row = 0, column = 2, sticky = "news", padx = 5, pady = 5)
+        self.entT = entT = tk.Entry(master = frmOptions)
+        entT.grid(row = 0, column = 3, columnspan = 1, sticky = "news", padx = 5, pady = 5)
+        entT.insert(0, "0.0004")
 
         lblA = tk.Label(master = frmOptions, text = "a")
         lblA.grid(row = 1, column = 0, sticky = "news", padx = 5, pady = 5)
@@ -62,9 +68,10 @@ class View:
     
     def execute(self, event):
         f = self.entF.get()
+        t = float(self.entT.get())
         a = float(self.entA.get())
         b = float(self.entB.get())
-        strResult, f, a_graf, b_graf, c = Biseccion.metodo_biseccion(f,a,b)
+        strResult, f, a_graf, b_graf, c = Biseccion.metodo_biseccion(f,a,b, t)
         self.textOutput.delete('1.0', tk.END)
         self.textOutput.insert(tk.END, strResult + "\n") 
         self.graficar(f, a_graf, b_graf, c)

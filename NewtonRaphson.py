@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from inputHandler import *
 
-def ejecutarMetodo(fx, dx, xi):
+def ejecutarMetodo(fx, dx, xi, tolerancia):
     #Llamados para conversion de texto a funcion
     results = []
     t1 = setUpInput(fx)
@@ -11,8 +11,7 @@ def ejecutarMetodo(fx, dx, xi):
     dx = lambda x: eval(t2)
     strResult = ""
 
-    i = 1
-    tolerancia =0.00001
+    i = 1    
     error = 1
     while error > tolerancia:
         if i == 50:

@@ -36,6 +36,12 @@ class View:
         entP0.grid(row = 2, column = 1, sticky = "news", padx = 5, pady = 5)
         entP0.insert(0, "2.5")
 
+        lblT = tk.Label(master = frmOptions, text = "Tolerancia = ")
+        lblT.grid(row = 2, column = 2, sticky = "news", padx = 5, pady = 5)
+        self.entT = entT = tk.Entry(master = frmOptions)
+        entT.grid(row = 2, column = 3, sticky = "news", padx = 5, pady = 5)
+        entT.insert(0, "0.00001")
+
         btnExecute = tk.Button(master = frmOptions, text = "Ejecutar")
         btnExecute.grid(row = 2, column = 4, sticky="news", padx = 5, pady = 5)
         btnExecute.bind('<Button-1>', self.execute)
@@ -65,7 +71,8 @@ class View:
         f = self.entF.get()
         f2 = self.entF2.get()
         x0 = float(self.entP0.get())
-        strResult, fx, dx, Raiz, results = NewtonRaphson.ejecutarMetodo(f,f2,x0)
+        t = float(self.entT.get())
+        strResult, fx, dx, Raiz, results = NewtonRaphson.ejecutarMetodo(f,f2,x0, t)
         self.textOutput.delete('1.0', tk.END)
         self.textOutput.insert(tk.END, strResult + "\n") 
         self.graficar(fx, results, Raiz)

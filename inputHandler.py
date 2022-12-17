@@ -60,5 +60,5 @@ def setUpInput(text):
     #text = text.replace("log", "np.log10")
     return text
 
-x = 3.14
-print(eval(setUpInput("(1/2)*x^(-1/2)")))
+#x = 3.14
+#print(eval(setUpInput("(1/2)*x^(-1/2)")))
