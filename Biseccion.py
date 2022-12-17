@@ -54,7 +54,7 @@ def metodo_biseccion(t,a,b,tol=10**-4,n=50):
     ite_teoricas = iteraciones(a,b)
     a_graf = a
     b_graf = b
-    if f(a)*f(b) >= 0:  # el intevalo escogido no sirve
+    if f(a)*f(b) > 0:  # el intevalo escogido no sirve
         newInter = new_inter(f,a,b)
         if newInter != None:
           a,b = newInter
