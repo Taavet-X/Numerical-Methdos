@@ -66,11 +66,13 @@ class View:
                 row = []
                 for char in line[0]:
                     if char == "+":
-                        row.append(float(number))
+                        if number != "":
+                            row.append(float(number))
                         number = "+"                                        
                         flag = True
                     elif char == "-":
-                        row.append(float(number))
+                        if number != "":
+                            row.append(float(number))
                         number = ""  
                         number = "-"
                         flag = True

@@ -51,7 +51,7 @@ def metodo_biseccion(t,a,b,tol=10**-4,n=50):
     strResult = ""
     t = setUpInput(t)
     f = lambda x: eval(t)
-    ite_teoricas = iteraciones(a,b)
+    ite_teoricas = iteraciones(a,b, tol)
     a_graf = a
     b_graf = b
     if f(a)*f(b) > 0:  # el intevalo escogido no sirve
