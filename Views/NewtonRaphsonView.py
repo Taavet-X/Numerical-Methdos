@@ -30,7 +30,7 @@ class View:
         entF2.grid(row = 1, column = 1, columnspan = 4, sticky = "news", padx = 5, pady = 5)
         entF2.insert(0, "6*(x^2) + 2*x - 13")
 
-        lblP0 = tk.Label(master = frmOptions, text = "P0")
+        lblP0 = tk.Label(master = frmOptions, text = "P0 = ")
         lblP0.grid(row = 2, column = 0, sticky = "news", padx = 5, pady = 5)
         self.entP0 = entP0 = tk.Entry(master = frmOptions)
         entP0.grid(row = 2, column = 1, sticky = "news", padx = 5, pady = 5)

@@ -4,6 +4,8 @@ from tkinter import ttk
 import Views.BiseccionView
 import Views.MinimosCuadradosView
 import Views.NewtonRaphsonView
+import Views.GaussSeidelView
+import Views.LagrangeView
 
 window = tk.Tk()
 window.title("Metodos Numericos")
@@ -27,6 +29,8 @@ tabControl.grid(row = 0, column=0, sticky="news", padx=5, pady=5)
 Views.BiseccionView.View(tabs["Biseccion"])
 Views.MinimosCuadradosView.View(tabs["Minimos Cuadrados"])
 Views.NewtonRaphsonView.View(tabs["Newton Raphson"])
+Views.GaussSeidelView.View(tabs["Gauss Seidel"])
+Views.LagrangeView.View(tabs["Lagrange"])
 
 ######################################################################
 
