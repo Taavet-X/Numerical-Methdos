@@ -77,7 +77,7 @@ class View:
         ymin, ymax = self.axes.get_ylim()
         self.axes.annotate("", xy=(xmax,0), xytext=(xmin,0), arrowprops=dict(color='gray', width=1.5, headwidth=8, headlength=10))
         self.axes.annotate("", xy=(0,ymax), xytext=(0,ymin), arrowprops=dict(color='gray', width=1.5, headwidth=8, headlength=10))
-        if(c != 0):
+        if(c != 0 and c != None):
             etiqueta = c,f(c)
             self.axes.plot(c, f(c), color='red', marker='o', markersize=7,label=etiqueta)
         self.axes.set_xlabel('xi')

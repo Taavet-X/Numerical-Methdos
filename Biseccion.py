@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from inputHandler import setUpInput
+from inputHandler import *
 
 plt.style.use('seaborn')
 #%matplotlib inline
@@ -60,7 +60,7 @@ def metodo_biseccion(t,a,b,tol=10**-4,n=50):
           a,b = newInter
         else:
           print('El intervalo no funciona, f(a)={:.2f} y f(b)={:.2f}'.format(f(a),f(b)))
-          return None
+          return "Error: El intervalo no funciona", f, a_graf, b_graf, None 
     
     e_abs = abs(b-a)
     i = 1
