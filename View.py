@@ -1,4 +1,9 @@
-from tkinter import messagebox as mb
+
+'''
+Autor:
+Germán David Estrada Holguin - 2013122
+'''
+
 import tkinter as tk
 from tkinter import ttk
 import Views.BiseccionView

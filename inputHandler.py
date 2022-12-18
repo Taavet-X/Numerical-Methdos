@@ -1,3 +1,10 @@
+
+'''
+Autor:
+Germán David Estrada Holguin - 2013122
+Manuel Alejandro Perdomo Londoño - 2067575
+'''
+
 import numpy as np
 
 pi = 3.141592653589793
@@ -40,6 +47,25 @@ def arcsec(x):
 def arcsc(x):
     return (1/np.arcsin(x))
 
+#Funciones hiperbolicas
+def sinh(x):
+    return np.sinh(x)
+
+def cosh(x):
+    return np.cosh(x)
+
+def tanh(x):
+    return np.tanh(x)
+
+def coth(x):
+    return 1/np.tanh(x)
+
+def sech(x):
+    return 1/np.cosh(x)
+
+def csch(x):
+    return 1/np.sinh(x)
+
 #Funciones logaritmicas
 def ln(x):
     return np.log(x)
@@ -49,16 +75,4 @@ def log(x):
 
 def setUpInput(text):
     text = text.replace("^", "**")
-    #text = text.replace("sin", "np.sin")
-    #text = text.replace("cos", "np.cos")
-    #text = text.replace("tan", "np.tan")
-    #text = text.replace("cot", "1/np.tan")
-    #text = text.replace("sec", "1/np.cos")
-    #text = text.replace("csc", "1/np.sin")    
-    #text = text.replace("ln", "np.log")
-    
-    #text = text.replace("log", "np.log10")
     return text
-
-#x = 3.14
-#print(eval(setUpInput("(1/2)*x^(-1/2)")))

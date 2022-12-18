@@ -1,3 +1,9 @@
+
+'''
+Autor:
+Germán David Estrada Holguin - 2013122
+'''
+
 import tkinter as tk
 import numpy as np
 import matplotlib

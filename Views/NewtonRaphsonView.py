@@ -1,3 +1,9 @@
+
+'''
+Autor:
+Germán David Estrada Holguin - 2013122
+'''
+
 import tkinter as tk
 import numpy as np
 import matplotlib
@@ -24,11 +30,13 @@ class View:
         entF.grid(row = 0, column = 1, columnspan = 4, sticky = "news", padx = 5, pady = 5)
         entF.insert(0, "2*(x^3) + (x^2) - 13*x + 6")
 
+        '''
         lblF2 = tk.Label(master = frmOptions, text = "f'(x) = ")
         lblF2.grid(row = 1, column = 0, sticky = "news", padx = 5, pady = 5)
         self.entF2 = entF2 = tk.Entry(master = frmOptions)
         entF2.grid(row = 1, column = 1, columnspan = 4, sticky = "news", padx = 5, pady = 5)
         entF2.insert(0, "6*(x^2) + 2*x - 13")
+        '''
 
         lblP0 = tk.Label(master = frmOptions, text = "P0 = ")
         lblP0.grid(row = 2, column = 0, sticky = "news", padx = 5, pady = 5)
@@ -69,10 +77,10 @@ class View:
     
     def execute(self, event):
         f = self.entF.get()
-        f2 = self.entF2.get()
+        #f2 = self.entF2.get()
         x0 = float(self.entP0.get())
         t = float(self.entT.get())
-        strResult, fx, dx, Raiz, results = NewtonRaphson.ejecutarMetodo(f,f2,x0, t)
+        strResult, fx, dx, Raiz, results = NewtonRaphson.ejecutarMetodo(f,x0, t)
         self.textOutput.delete('1.0', tk.END)
         self.textOutput.insert(tk.END, strResult + "\n") 
         self.graficar(fx, results, Raiz)
@@ -96,7 +104,6 @@ class View:
         self.axes.set_ylabel('yi')
         self.axes.legend()
         self.axes.set_title('Newton Raphson')
-
 
         self.figure_canvas.draw()
         self.axes.clear()
