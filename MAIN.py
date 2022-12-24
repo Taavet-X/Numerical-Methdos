@@ -3,6 +3,25 @@
 Autor:
 Germán David Estrada Holguin - 2013122
 '''
+import subprocess
+import sys
+try:
+    import numpy
+except:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", 'numpy'])
+try:
+    import matplotlib
+except:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", 'matplotlib'])
+try:
+    import sympy
+except:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", 'sympy'])
+try:
+    import pytexit
+except:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", 'pytexit'])
+
 
 import tkinter as tk
 from tkinter import ttk

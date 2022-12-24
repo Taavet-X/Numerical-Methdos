@@ -29,7 +29,7 @@ def ejecutarMetodo(fx, xi, tolerancia):
 
     strResult = ""
 
-    i = 1    
+    i = 0    
     error = 1
     while error > tolerancia:
         if i == 50:
@@ -62,9 +62,10 @@ def ejecutarMetodo(fx, xi, tolerancia):
             errorVal = round(error,6)
         except:
             errorVal = error
-        strResult += 'n{:<1}: x{:<2}={:.7f}, f(x{:<1})={:.7f}, f\'(x{:<1})={:.7f}'.format(i,i-1,xiVal,i-1,fxVal,i-1,dxVal) + ' error:{}'.format(errorVal) + "\n"
+        strResult += 'n{:<1}: x{:<2}={:.7f}, f(x{:<1})={:.7f}, f\'(x{:<1})={:.7f}'.format(i,i,xiVal,i,fxVal,i,dxVal) + ' error:{}'.format(errorVal) + "\n"
         #strResult += "n" + str(i) + "\txi=" + str(xiVal) + "\tf(xi)=" + str(fxVal) + "\tf'(xi)=" + str(dxVal) + "\txi+1=" + str(raizVal) + "\tError="+str(errorVal)+"\n"
         xi = Raiz
         i+= 1
+    strResult += "x = " + str(Raiz)
     return strResult, fx, dx, Raiz, results
 

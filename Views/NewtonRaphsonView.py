@@ -8,6 +8,8 @@ import tkinter as tk
 import numpy as np
 import matplotlib
 import NewtonRaphson
+import threading
+import time
 
 matplotlib.use('TkAgg')
 
@@ -82,29 +84,32 @@ class View:
         t = float(self.entT.get())
         strResult, fx, dx, Raiz, results = NewtonRaphson.ejecutarMetodo(f,x0, t)
         self.textOutput.delete('1.0', tk.END)
-        self.textOutput.insert(tk.END, strResult + "\n") 
-        self.graficar(fx, results, Raiz)
+        self.textOutput.insert(tk.END, strResult + "\n")
+        thread = threading.Thread(target = self.graficar, args=(fx, results, Raiz))
+        thread.start()        
+        #self.graficar(fx, results, Raiz)
 
     def graficar(self, f, results, c=0, num = 1000):
-        x = np.linspace(c - 1, c + 1, num)
-        self.axes.plot(x, f(x), color = 'red')
-        for result in results:          
-            xi = result[0]            
-            self.axes.plot(xi, f(xi), color='orange', marker='o', markersize=5,label=None) 
-            self.axes.plot(x, result[2](x), color = 'gray', linestyle='dashed')
-                
-        xmin, xmax = self.axes.get_xlim()
-        ymin, ymax = self.axes.get_ylim()
-        self.axes.annotate("", xy=(xmax,0), xytext=(xmin,0), arrowprops=dict(color='gray', width=1.5, headwidth=8, headlength=10))
-        self.axes.annotate("", xy=(0,ymax), xytext=(0,ymin), arrowprops=dict(color='gray', width=1.5, headwidth=8, headlength=10))
-        if(c != 0):
-            etiqueta = c,f(c)
-            self.axes.plot(c, f(c), color='red', marker='o', markersize=7,label=etiqueta)
-        self.axes.set_xlabel('xi')
-        self.axes.set_ylabel('yi')
-        self.axes.legend()
-        self.axes.set_title('Newton Raphson')
+        for result in results:
+            x = np.linspace(c - 1, c + 1, num)
+            self.axes.plot(x, f(x), color = 'red')
 
-        self.figure_canvas.draw()
-        self.axes.clear()
-        #self.figure.show()
+            xi = result[0]
+            etiqueta = xi,f(xi)
+            self.axes.plot(xi, f(xi), color='orange', marker='o', markersize=5,label=etiqueta) 
+            self.axes.plot(x, result[2](x), color = 'gray', linestyle='dashed')
+                    
+            xmin, xmax = self.axes.get_xlim()
+            ymin, ymax = self.axes.get_ylim()
+            self.axes.annotate("", xy=(xmax,0), xytext=(xmin,0), arrowprops=dict(color='gray', width=1.5, headwidth=8, headlength=10))
+            self.axes.annotate("", xy=(0,ymax), xytext=(0,ymin), arrowprops=dict(color='gray', width=1.5, headwidth=8, headlength=10))
+
+            self.axes.set_xlabel('xi')
+            self.axes.set_ylabel('yi')
+            self.axes.legend()
+            self.axes.set_title('Newton Raphson')
+
+            self.figure_canvas.draw()
+            self.axes.clear()
+
+            time.sleep(1)        
